@@ -12,16 +12,16 @@ print("sum is ",sum)
 
 
 #ASSGMNT-2.2
-str1="Adesh"
-str2="Singh"
-str3="Thakuri"
+str1="priyanshu"
+str2="kashyap"
+str3="koundal"
 strR=str1+str2+str3
 print("concatinated string is ",strR)
 
 #ASSGMNT-2.2
-str1="Adesh"
-str2="Singh"
-str3="Thakuri"
+str1="priyanshu"
+str2="kashyap"
+str3="koundal"
 strR=str1+str2+str3
 print("concatinated string is ",strR)
 
