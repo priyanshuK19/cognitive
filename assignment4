@@ -1,0 +1,74 @@
+# Q1 a
+a = np.array([0,1,2,3,4])
+b = a + 2
+print(b)
+# b
+c = a * 3
+print(c)
+# c
+d = a / 2
+print(d)
+
+# Q2 a
+arr = np.array([1,2,3,6,4,5])
+e = np.flip(arr)
+print(e)
+# Q2.b
+x = np.array([1,2,3,4,5,1,2,1,1,1,1])
+y = np.array([1,1,1,2,3,4,2,4,3,3,3])
+print(np.bincount(x))
+print(np.bincount(y))
+print("MAX COUNT")
+print(np.bincount(x).argmax())
+print(np.bincount(y).argmax())
+
+# Q3
+arr = np.array([[10,20,30],[40,50,60],[70,80,90]])
+print(arr[0,1])
+print(arr[2,0])
+
+# Q4
+import numpy as np
+Priyanshu = np.linspace(10, 100, 25)
+
+print("Array:", Priyanshu)
+print("Dimensions:", Priyanshu.ndim)
+print("Shape:", Priyanshu.shape)
+print("Total elements:", Priyanshu.size)
+print("Data type of each element:", Priyanshu.dtype)
+print("Total bytes consumed by the array:", Priyanshu.nbytes)
+
+Priyanshu_transposed = Priyanshu.reshape(25, 1)
+print("Transposed Array using reshape():\n", Priyanshu_transposed)
+
+Priyanshu_T = Priyanshu.T
+print("Transposed Array using .T attribute:", Priyanshu_T)
+
+if np.array_equal(Priyanshu, Priyanshu_T):
+    print(".T does not change a 1-D array; it remains the same.")
+else:
+    print(".T successfully transposed the array.")
+
+# Q5
+import numpy as np
+
+ucs420_Priyanshu = np.array([[10,20,30,40],[50,60,70,80],[90,15,20,35]])
+print(ucs420_Priyanshu)
+mean = np.mean(ucs420_Priyanshu)
+print(mean)
+median = np.median(ucs420_Priyanshu)
+print(median)
+min = np.min(ucs420_Priyanshu)
+
+max = np.max(ucs420_Priyanshu)
+
+print(max)
+print(min)
+unique_element = np.unique(ucs420_Priyanshu)
+print(unique_element)
+print(np.shape(ucs420_Priyanshu))
+Reshape_ucs420_Priyanshu = ucs420_Priyanshu.reshape(4, 3)
+print(Reshape_ucs420_Priyanshu)
+
+resize_ucs420_Priyanshu = np.resize(ucs420_Priyanshu, (2, 3))
+print(resize_ucs420_Priyanshu)
