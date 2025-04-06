@@ -1,0 +1,89 @@
+#Q1
+import numpy as np
+import pandas as pd
+
+rn=102317047
+np.random.seed(rn)
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+categories = ["Electronics", "Clothing", "Home & Kitchen", "Sports"]
+
+sales_data=np.random.randint(1000, 5001, size=(12, 4))
+
+df = pd.DataFrame(sales_data, columns=categories, index=months)
+
+print(df.head(5))
+print(df.describe())
+
+
+totals = df.sum()
+print(totals)
+totalm = df.sum(axis=1)
+print(totalm)
+growth_rates = df.pct_change().mean() * 100
+
+
+df["Total Sales"] = totalm
+df["Growth Rate"] = df["Total Sales"].pct_change() * 100
+
+print(df)
+
+discounted_df = df.copy()
+if rn % 2 == 0:
+    discounted_df["Electronics"] *= 0.9
+else:
+    discounted_df["Clothing"] *= 0.85
+
+discounted_df
+
+#PART 2
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.figure(figsize=(12, 6))
+df.plot(kind='line', marker='o', title='Monthly Sales Trends')
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.legend(loc='upper left')
+plt.show()
+
+# Box plots
+plt.figure(figsize=(10, 5))
+sns.boxplot(data=df[categories])
+plt.title("Sales Distribution by Category")
+plt.show()
+
+#Q2
+
+
+array = np.array([[1, -2, 3], [-4, 5, -6]])
+print(np.abs(array))
+print(np.percentile(array, [25, 50, 75], axis=None))
+print(np.percentile(array, [25, 50, 75], axis=0))
+print(np.percentile(array, [25, 50, 75], axis=1))
+print(np.mean(array))
+print(np.median(array))
+print(np.std(array))
+
+
+#Q3
+a = np.array([-1.8, -1.6, -0.5, 0.5, 1.6, 1.8, 3.0])
+print(np.floor(a))
+print(np.ceil(a))
+print(np.trunc(a))
+print(np.round(a))
+
+#Q4
+lst = [1, 2, 3, 4, 5]
+temp = lst[1]
+lst[1] = lst[3]
+lst[3] = temp
+print("Swapped List:", lst)
+
+#Q5
+s = {1,2,3,4,5}
+sl = list(s)
+sl[0], sl[4] = sl[4], sl[0]
+ss = set(sl)
+print("Original Set:", s)
+print("list:",sl)
+print("Swapped Set:", ss)
