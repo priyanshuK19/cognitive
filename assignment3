@@ -1,0 +1,89 @@
+#Q1
+import pandas as pd
+
+data= {
+       'Refund':['Yes','No','No','Yes','No','No','Yes','No','No','No'],
+        'Maritial Status':['Single','Married','Single','Married','Divorced','Married','Divorced','Single','Married','Single'],
+        'Taxable Income':['125k','100k','70k','120k','95k','60k','22k','85k','75k','90k'],
+        'Cheat':['No','No','No','No','Yes','No','No',"Yes",'No','Yes']}
+
+df = pd.DataFrame(data)
+df.index.name='Tid'
+
+print('\n',df)
+
+#MyVar=pd.Series(data,index=[1,2,3])
+#print(MyVar)
+
+#Q2
+print('Q2')
+print('\n')
+print(df.loc[0])
+print('\n')
+print(df.loc[4])
+print('\n')
+print(df.loc[7])
+print('\n')
+print(df.loc[8])
+
+#Q3
+print('\n')
+print('Q3')
+print('\n')
+print(df.iloc[3:8])
+print('\n')
+da=df.iloc[4:8, 2:4]
+print(da)
+
+#Q4
+
+df=pd.read_csv('Iris.csv')
+
+print(df)
+#Q5
+import pandas as pd
+
+df=pd.read_csv('Iris.csv')
+print(df.head(5))
+df.drop(df.columns[2],axis=1,inplace=True)
+df.drop(index=3,inplace=True)
+print(df.head(5))
+
+
+#Q6
+import pandas as pd
+
+# Create the dataset as a dictionary
+import pandas as pd
+
+# Create the dataset as a dictionary
+data = {
+    "Employee_ID": ["101", "102", "103", "104", "105"],
+    "Name": ["Alice", "Bob", "Charlie", "Dana", "Edwards"],
+    "Department": ["HR", "IT", "IT", "Marketing", "Finance"],
+    "Age":[29,34,41,28,38],
+    "Salary": [50000, 70000, 65000, 55000, 60000],
+    "Years Of Experience": [4, 8, 10, 3, 12],
+    "Joining_Date": ["2020-03-15", "2017-07-19", "2013-06-01", "2021-02-10", "2010-11-25"],
+    "Gender": ["Female", "Male", "Male", "Female", "Male"],
+    "Bonus_Rating": [4.5, 4.0, 3.8, 4.7, 3.5],
+}
+
+
+df = pd.DataFrame(data)
+print(df)
+print('\n')
+print("5 columns and 9 rows")
+print(df.shape)
+print('\n')
+print(df.info())
+print('\n')
+print(df.describe())
+print('\n')
+print(df.head())
+print(df.tail(3))
+print('\n')
+avg_salary=df['Salary'].mean()
+print('Average salary is:',avg_salary)
+
+
