@@ -1,0 +1,120 @@
+#Q1
+The_list = [10,20,30,40,50,60,70,80]
+print(The_list)
+The_list.append(200)
+The_list.append(300)
+
+print(The_list)
+
+
+The_list.insert(5,2)
+print(The_list)
+
+del The_list[0]
+del The_list[0]
+print(The_list)
+
+The_list.sort()
+print(The_list)
+The_list.reverse()
+print(The_list)
+
+
+Q2
+
+T= (45,89.5,76,45.4,89,92,58,45)
+print(max(T))
+index =T.index(max(T))
+print('Max Index is:',index)
+print(min(T))
+minm=0
+for i in range(0,8):
+    if (T[i]==min(T)):
+        minm= minm+1  
+
+print('amount of times the lowest number has came up is:', minm)
+
+reversed_list = list(T[::-1])
+
+print(reversed_list)
+a= int (input('write a number to find:\n'))
+f=0
+for i in range(0,8):
+    if (T[i]==a):
+        print('its in the list/tuple')
+        f=1
+
+if (f==0):
+    print('its not in the tuple/list')
+        
+
+
+
+
+#Q3
+import random
+R=random.sample(range(100,900),100)
+print(random_int)
+print('even numbers: \n')
+even_count=0
+for i in range(0,100):
+    if (R[i]%2==0):
+        print(R[i])
+        even_count= even_count+1
+print('even numbers: ',even_count)
+odd_count= 0
+print('odd numbers: \n')
+for i in range(0,100):
+    if(R[i]%2!=0):
+        print(R[i])
+        odd_count=odd_count+1
+
+print('odd numbers: ',odd_count)
+
+prime_count= 0
+print('prime numbers: \n')
+
+for i in range(0,100):
+    flag=True
+
+    
+    for j in range(2,R[i]//2+1):
+           if (R[i]%j==0):
+               flag= False
+               break
+    if flag == True:
+        print(R[i])
+        prime_count += 1
+
+
+#Q4
+a = {32,56,78,90} 
+b = {78,45,90,23}
+
+print(a.union(b))
+print(a.intersection(b))
+print(a.symmetric_difference(b))
+print(a.issubset(b))
+print(b.issubset(a))
+
+x = int(input("Enter number to delete"))
+if x in A:
+    A.remove(x)
+    print("Deleted")
+else:
+    print("Not found")
+
+    
+
+print('prime numbers: ',prime_count)
+
+#Q5
+sample_dict={
+    "name":"priyanshu",
+    "age":20,
+    "salary":80000,
+    "city":"New York"
+}
+city_value = sample_dict.pop("city")
+sample_dict["location"]=city_value
+print(sample_dict)
