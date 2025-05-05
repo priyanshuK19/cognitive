@@ -1,0 +1,118 @@
+#Q1
+
+import re
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from collections import Counter
+
+nltk.download('punkt')
+nltk.download('stopwords')
+
+text = """
+My favorite topic is technology. I love how it evolves every day, bringing new possibilities and innovations.
+Whether it's artificial intelligence, machine learning, or the latest in consumer electronics, technology is constantly changing the way we live.
+I enjoy reading about these advancements, experimenting with new gadgets, and exploring the impacts of technology on society.
+"""
+
+text_lower = text.lower()
+text_no_punctuation = re.sub(r'[^\w\s]', '', text_lower)
+
+tokens = word_tokenize(text_no_punctuation)
+
+split_text = text_no_punctuation.split() 
+word_tokens = word_tokenize(text_no_punctuation) 
+
+
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [word for word in word_tokens if word not in stop_words]
+
+
+word_freq = Counter(filtered_tokens)
+
+split_text, word_tokens, filtered_tokens, word_freq
+
+
+#Q2
+
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+import re
+
+
+words_only_alpha = re.findall(r'\b[a-zA-Z]+\b', text_no_punctuation)
+
+
+filtered_alpha_words = [word for word in words_only_alpha if word not in stop_words]
+
+
+porter_stemmer = PorterStemmer()
+stemmed_words = [porter_stemmer.stem(word) for word in filtered_alpha_words]
+
+lemmatizer = WordNetLemmatizer()
+lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_alpha_words]
+
+filtered_alpha_words, stemmed_words, lemmatized_words
+
+
+#Q3
+
+texts = [
+    "The stock market saw a significant drop today, affecting many companies.",
+    "The weather is warm and sunny, perfect for a day at the beach.",
+    "Technology is advancing rapidly, with artificial intelligence leading the way."
+]
+
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
+count_vectorizer = CountVectorizer()
+tfidf_vectorizer = TfidfVectorizer()
+
+count_matrix = count_vectorizer.fit_transform(texts)
+tfidf_matrix = tfidf_vectorizer.fit_transform(texts)
+
+count_feature_names = count_vectorizer.get_feature_names_out()
+count_matrix_array = count_matrix.toarray()
+
+
+tfidf_feature_names = tfidf_vectorizer.get_feature_names_out()
+tfidf_matrix_array = tfidf_matrix.toarray()
+
+
+import numpy as np
+
+
+top_keywords_tfidf = []
+for i, text in enumerate(texts):
+    tfidf_scores = tfidf_matrix_array[i]
+    top_indices = np.argsort(tfidf_scores)[-3:][::-1]
+    top_keywords = [tfidf_feature_names[idx] for idx in top_indices]
+    top_keywords_tfidf.append(top_keywords)
+
+top_keywords_tfidf
+
+#Q4
+
+text1 = "Artificial intelligence is transforming the world, bringing new capabilities to industries."
+text2 = "Blockchain technology offers secure transactions and decentralized systems."
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+
+texts_for_similarity = [text1, text2]
+
+
+set1 = set(text1.lower().split())
+set2 = set(text2.lower().split())
+
+jaccard_similarity = len(set1.intersection(set2)) / len(set1.union(set2))
+
+
+tfidf_vectorizer = TfidfVectorizer()
+tfidf_matrix = tfidf_vectorizer.fit_transform(texts_for_similarity)
+
+cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
+
+
+jaccard_similarity, cosine_sim
+
