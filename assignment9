@@ -1,0 +1,73 @@
+#Q1
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize, sent_tokenize
+from collections import Counter
+import string
+
+nltk.download('punkt')
+nltk.download('stopwords')
+
+text = """
+My favorite topic is books. I enjoy reading books because they provide an escape from the everyday routine.
+Books have the power to transport me to different worlds, whether it's fantasy, mystery, or historical fiction.
+They allow me to experience emotions, adventures, and new perspectives. Whether it's curling up with a good novel or exploring nonfiction, books are always a source of joy for me.
+"""
+text_lower = text.lower()
+text_no_punctuation = text_lower.translate(str.maketrans('', '', string.punctuation))
+tokens = word_tokenize(text_no_punctuation)
+
+
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [word for word in tokens if word not in stop_words]
+
+word_freq = Counter(filtered_tokens)
+word_freq
+
+#Q2
+from nltk.stem import PorterStemmer, LancasterStemmer
+from nltk.stem import WordNetLemmatizer
+
+porter_stemmer = PorterStemmer()
+lancaster_stemmer = LancasterStemmer()
+lemmatizer = WordNetLemmatizer()
+
+porter_stems = [porter_stemmer.stem(word) for word in filtered_tokens]
+lancaster_stems = [lancaster_stemmer.stem(word) for word in filtered_tokens]
+lemmas = [lemmatizer.lemmatize(word) for word in filtered_tokens]
+
+porter_stems, lancaster_stems, lemmas
+
+
+#Q3
+import re
+
+long_words = re.findall(r'\b\w{6,}\b', text_no_punctuation)
+numbers = re.findall(r'\b\d+\b', text)
+capitalized_words = re.findall(r'\b[A-Z][a-z]*\b', text)
+alpha_words = re.findall(r'\b[a-zA-Z]+\b', text_no_punctuation)
+vowel_words = re.findall(r'\b[aeiouAEIOU][a-zA-Z]*\b', text_no_punctuation)
+long_words, numbers, capitalized_words, alpha_words, vowel_words
+
+
+
+#Q4
+
+def custom_tokenize(text):
+    text = re.sub(r'[^a-zA-Z0-9\s\'\-]', '', text)  # Remove punctuation, keeping contractions and hyphens
+    text = re.sub(r'(?<=\d)\.(?=\d)', ' ', text)  # Keep decimal points intact
+    tokens = re.findall(r'\b\w+\b', text)  # Tokenize words
+    return tokens
+
+
+text_with_details = "Contact me at john.doe@example.com or visit http://example.com. Call me at 123-456-7890."
+
+
+text_cleaned = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b', '<EMAIL>', text_with_details)
+text_cleaned = re.sub(r'http[s]?://\S+', '<URL>', text_cleaned)
+text_cleaned = re.sub(r'\+?\d{1,2}\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}', '<PHONE>', text_cleaned)
+
+
+custom_tokens = custom_tokenize(text)
+text_cleaned, custom_tokens
+
